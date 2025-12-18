@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List | Smart Education Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; }
+        .filter-sidebar { height: fit-content; }
+        input[type="range"] { accent-color: #2563eb; }
+        .product-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card:hover { transform: translateY(-8px); shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Simple Nav -->
+    <nav class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="bg-blue-600 p-1.5 rounded-lg">
+                    <i class="fas fa-book-open text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold text-blue-900">Smart<span class="text-blue-600">Edu</span></span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <i class="fas fa-shopping-cart text-slate-600 text-xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">৩</span>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center border border-blue-200">
+                    <i class="fas fa-user text-blue-600 text-sm"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Sidebar Filters -->
+            <aside class="w-full lg:w-64 filter-sidebar space-y-8 bg-white p-6 rounded-2xl border border-slate-200">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-4">অনুসন্ধান</h3>
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="বই বা কোর্স খুঁজুন..." 
+                               class="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        <i class="fas fa-search absolute left-3 top-3 text-slate-400"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-4">ক্যাটাগরি</h3>
+                    <div class="space-y-3" id="categoryFilters">
+                        <label class="flex items-center space-x-3 cursor-pointer group">
+                            <input type="checkbox" value="physics" class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                            <span class="text-slate-600 group-hover:text-blue-600 transition">পদার্থবিজ্ঞান</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group">
+                            <input type="checkbox" value="math" class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                            <span class="text-slate-600 group-hover:text-blue-600 transition">গণিত</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group">
+                            <input type="checkbox" value="english" class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                            <span class="text-slate-600 group-hover:text-blue-600 transition">ইংরেজি</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group">
+                            <input type="checkbox" value="bcs" class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                            <span class="text-slate-600 group-hover:text-blue-600 transition">বিসিএস প্রস্তুতি</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-4">মূল্য পরিসীমা (Price)</h3>
+                    <input type="range" id="priceRange" min="0" max="2000" value="2000" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                    <div class="flex justify-between mt-2 text-sm font-semibold text-slate-600">
+                        <span>৳০</span>
+                        <span id="priceValue" class="text-blue-600">৳২০০০</span>
+                    </div>
+                </div>
+
+                <button id="resetFilters" class="w-full py-3 border-2 border-slate-100 text-slate-500 font-bold rounded-xl hover:bg-slate-50 transition">ফিল্টার রিসেট</button>
+            </aside>
+
+            <!-- Product Grid Area -->
+            <div class="flex-1">
+                <!-- Top Toolbar -->
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-8 bg-white p-4 rounded-2xl border border-slate-200">
+                    <p class="text-slate-600 mb-4 sm:mb-0"><span id="resultCount" class="font-bold text-blue-600">৮টি</span> প্রোডাক্ট পাওয়া গেছে</p>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm font-medium text-slate-500">সর্ট করুন:</span>
+                        <select id="sortOrder" class="bg-slate-50 border border-slate-200 text-slate-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 outline-none">
+                            <option value="default">ডিফল্ট</option>
+                            <option value="low">মূল্য: কম থেকে বেশি</option>
+                            <option value="high">মূল্য: বেশি থেকে কম</option>
+                            <option value="rating">সেরা রেটিং</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <!-- Dynamic Products will appear here via JS -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="hidden py-20 text-center">
+                    <div class="bg-slate-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-search text-3xl text-slate-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">কোন প্রোডাক্ট পাওয়া যায়নি</h3>
+                    <p class="text-slate-500">দয়া করে ভিন্ন কীওয়ার্ড বা ফিল্টার ব্যবহার করুন।</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const products = [
+            { id: 1, name: "আধুনিক পদার্থবিজ্ঞান রহস্য", category: "physics", price: 450, rating: 4.5, image: "https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=400&q=80", tag: "Printed + PDF" },
+            { id: 2, name: "উচ্চতর গণিত শর্টকাট গাইড", category: "math", price: 200, rating: 5.0, image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=400&q=80", tag: "Digital Only" },
+            { id: 3, name: "কমিউনিকেটিভ ইংলিশ মাস্টারক্লাস", category: "english", price: 350, rating: 4.2, image: "https://images.unsplash.com/photo-1543004471-2406836ea88b?auto=format&fit=crop&w=400&q=80", tag: "Best Seller" },
+            { id: 4, name: "বিসিএস সাধারণ জ্ঞান পূর্ণাঙ্গ কোর্স", category: "bcs", price: 999, rating: 4.8, image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80", tag: "Video Course" },
+            { id: 5, name: "কোয়ান্টাম মেকানিক্স পরিচিতি", category: "physics", price: 650, rating: 4.7, image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80", tag: "Printed" },
+            { id: 6, name: "জ্যামিতি সমাধান প্রো", category: "math", price: 150, rating: 4.0, image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=400&q=80", tag: "E-Book" },
+            { id: 7, name: "ইংরেজি ভোকাবুলারি হ্যাকস", category: "english", price: 280, rating: 4.9, image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=400&q=80", tag: "Hot Deal" },
+            { id: 8, name: "বিসিএস ম্যাথ প্রিলিমিনারি", category: "bcs", price: 1200, rating: 4.6, image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80", tag: "Hardcopy" }
+        ];
+
+        let filteredProducts = [...products];
+
+        const productGrid = document.getElementById('productGrid');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+        const sortOrder = document.getElementById('sortOrder');
+        const resultCount = document.getElementById('resultCount');
+        const categoryInputs = document.querySelectorAll('#categoryFilters input');
+
+        function renderProducts(data) {
+            productGrid.innerHTML = '';
+            if (data.length === 0) {
+                productGrid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                resultCount.innerText = '০টি';
+                return;
+            }
+
+            productGrid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            resultCount.innerText = `${data.length}টি`;
+
+            data.forEach(product => {
+                const card = `
+                    <div class="product-card bg-white rounded-2xl border border-slate-200 overflow-hidden group shadow-sm">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase">${product.tag}</div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-slate-900 mb-1 line-clamp-1">${product.name}</h3>
+                            <p class="text-xs text-slate-400 mb-3 capitalize"><i class="fas fa-folder-open mr-1"></i> ${product.category}</p>
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400 text-[10px] mr-2">
+                                    ${'<i class="fas fa-star"></i>'.repeat(Math.floor(product.rating))}
+                                    ${product.rating % 1 !== 0 ? '<i class="fas fa-star-half-alt"></i>' : ''}
+                                </div>
+                                <span class="text-xs text-slate-500 font-semibold">${product.rating}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-extrabold text-blue-600">৳${product.price}</span>
+                                <button class="p-2.5 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white transition group/btn">
+                                    <i class="fas fa-cart-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productGrid.innerHTML += card;
+            });
+        }
+
+        function filterAndSort() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const maxPrice = parseInt(priceRange.value);
+            const activeCategories = Array.from(categoryInputs)
+                .filter(i => i.checked)
+                .map(i => i.value);
+
+            filteredProducts = products.filter(p => {
+                const matchesSearch = p.name.toLowerCase().includes(searchTerm);
+                const matchesPrice = p.price <= maxPrice;
+                const matchesCategory = activeCategories.length === 0 || activeCategories.includes(p.category);
+                return matchesSearch && matchesPrice && matchesCategory;
+            });
+
+            // Sorting
+            const order = sortOrder.value;
+            if (order === 'low') filteredProducts.sort((a, b) => a.price - b.price);
+            if (order === 'high') filteredProducts.sort((a, b) => b.price - a.price);
+            if (order === 'rating') filteredProducts.sort((a, b) => b.rating - a.rating);
+
+            renderProducts(filteredProducts);
+        }
+
+        // Listeners
+        searchInput.addEventListener('input', filterAndSort);
+        priceRange.addEventListener('input', (e) => {
+            priceValue.innerText = `৳${e.target.value}`;
+            filterAndSort();
+        });
+        sortOrder.addEventListener('change', filterAndSort);
+        categoryInputs.forEach(input => input.addEventListener('change', filterAndSort));
+
+        document.getElementById('resetFilters').addEventListener('click', () => {
+            searchInput.value = '';
+            priceRange.value = 2000;
+            priceValue.innerText = '৳২০০০';
+            sortOrder.value = 'default';
+            categoryInputs.forEach(i => i.checked = false);
+            filterAndSort();
+        });
+
+        // Initial Load
+        renderProducts(products);
+    </script>
+</body>
+</html>

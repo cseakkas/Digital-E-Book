@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Education & Digital Book Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins & Hind Siliguri -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        body {
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 500px;
+            padding-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="glass-nav sticky top-0 z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center gap-4">
+                
+                <!-- 1. Left Side: Logo -->
+                <div class="flex items-center flex-shrink-0 space-x-2">
+                    <div class="bg-blue-600 p-2 rounded-lg">
+                        <i class="fas fa-book-open text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <span class="text-xl md:text-2xl font-bold text-blue-900">Smart<span class="text-blue-600">Edu</span></span>
+                </div>
+
+                <!-- 2. Middle: Searchbox (Hidden on small mobile, visible on tablet up) -->
+                <div class="hidden md:flex flex-1 max-w-md relative">
+                    <input type="text" 
+                           placeholder="বই বা কোর্স খুঁজুন..." 
+                           class="w-full pl-10 pr-4 py-2.5 bg-slate-100 border border-transparent focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-full transition-all outline-none text-slate-700">
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+
+                <!-- 3. Right Side: Desktop Menu & Icons -->
+                <div class="flex items-center space-x-1 md:space-x-4">
+                    
+                    <!-- Desktop Links -->
+                    <div class="hidden lg:flex items-center space-x-6 font-medium text-slate-700 mr-4">
+                        <a href="#home" class="hover:text-blue-600 transition">হোম</a>
+                        <a href="#products" class="hover:text-blue-600 transition">প্রোডাক্টস</a>
+                        <a href="#Course" class="hover:text-blue-600 transition">Course</a>
+                        <div class="relative group">
+                            <button class="hover:text-blue-600 transition flex items-center">
+                                ক্যাটাগরি <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                            </button>
+                            <div class="absolute top-full left-0 w-48 bg-white shadow-xl rounded-lg py-2 border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                                <a href="#" class="block px-4 py-2 hover:bg-blue-50">একাডেমিক</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-blue-50">স্কিল ডেভেলপমেন্ট</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-blue-50">ফ্রিল্যান্সিং</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Icons -->
+                    <div class="flex items-center space-x-2 md:space-x-4">
+                        <!-- Search Icon (Visible on small devices only) -->
+                        <button class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-full">
+                            <i class="fas fa-search"></i>
+                        </button>
+
+                        <!-- Cart -->
+                        <button class="relative p-2 text-slate-600 hover:text-blue-600 transition">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                            <span class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+                        </button>
+
+                        <!-- Login -->
+                        <button onclick="toggleModal('login-modal')" class="hidden sm:block px-5 py-2 text-blue-600 font-semibold hover:bg-blue-50 rounded-full transition">লগইন</button>
+
+                        <!-- Profile -->
+                        <div class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-slate-100 flex items-center justify-center border-2 border-transparent hover:border-blue-500 transition cursor-pointer">
+                            <i class="fas fa-user text-slate-500"></i>
+                        </div>
+
+                        <!-- Hamburger Menu Button -->
+                        <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition">
+                            <i id="menu-icon" class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu (Collapsible) -->
+            <div id="mobile-menu" class="lg:hidden">
+                <div class="flex flex-col space-y-3 pt-2 border-t border-slate-100">
+                    <a href="#home" class="px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">হোম</a>
+                    <a href="#products" class="px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">প্রোডাক্টস</a>
+                    <div class="px-4 py-2">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">ক্যাটাগরি</p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="#" class="text-sm text-slate-600 py-1">একাডেমিক</a>
+                            <a href="#" class="text-sm text-slate-600 py-1">স্কিলস</a>
+                            <a href="#" class="text-sm text-slate-600 py-1">ফ্রিল্যান্সিং</a>
+                        </div>
+                    </div>
+                    <div class="sm:hidden px-4 pb-4">
+                        <button onclick="toggleModal('login-modal')" class="w-full py-2.5 bg-blue-600 text-white font-bold rounded-xl">লগইন করুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+ 
+    <!-- Hero Section -->
+    <header id="home" class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left animate__animated animate__fadeInLeft">
+                    <h1 class="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl leading-tight">
+                        ডিজিটাল শিক্ষায় <span class="text-blue-600 underline">বারকোড ভেরিফাইড</span> স্মার্ট সমাধান
+                    </h1>
+                    <p class="mt-6 text-lg text-slate-600 sm:mt-8">
+                        শিক্ষার্থীরা এখন Printed এবং Digital বই কিনবে নিরাপদে। প্রতিটি বইয়ের জন্য ইউনিক বারকোড ভেরিফিকেশন সিস্টেম যা আপনার লার্নিং কন্টেন্টকে রাখে সুরক্ষিত।
+                    </p>
+                    <div class="mt-10 sm:flex sm:justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#books" class="w-full sm:w-auto flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-xl text-white bg-blue-600 hover:bg-blue-700 md:text-lg shadow-lg">
+                            বই দেখুন <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                        <a href="#features" class="w-full sm:w-auto flex items-center justify-center px-8 py-4 border border-slate-300 text-base font-bold rounded-xl text-slate-700 bg-white hover:bg-slate-50 md:text-lg">
+                            কিভাবে কাজ করে?
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center animate__animated animate__fadeInRight">
+                    <div class="relative mx-auto w-full rounded-3xl shadow-2xl overflow-hidden group">
+                        <!-- Placeholder for Hero Image -->
+                        <div class="bg-blue-100 h-80 md:h-96 flex items-center justify-center">
+                             <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Education Books" class="object-cover w-full h-full opacity-90 group-hover:scale-105 transition duration-500">
+                             <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition"></div>
+                             <div class="absolute bottom-4 right-4 bg-white p-4 rounded-xl shadow-lg flex items-center space-x-3 animate-bounce">
+                                <i class="fas fa-barcode text-blue-600 text-2xl"></i>
+                                <span class="text-sm font-bold">Verified Access</span>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center p-6 rounded-2xl bg-blue-50/50">
+                <p class="text-3xl font-bold text-blue-600">১০কে+</p>
+                <p class="text-slate-600 font-medium">সক্রিয় শিক্ষার্থী</p>
+            </div>
+            <div class="text-center p-6 rounded-2xl bg-indigo-50/50">
+                <p class="text-3xl font-bold text-indigo-600">৫০০+</p>
+                <p class="text-slate-600 font-medium">ডিজিটাল বুক</p>
+            </div>
+            <div class="text-center p-6 rounded-2xl bg-blue-50/50">
+                <p class="text-3xl font-bold text-blue-600">৫০+</p>
+                <p class="text-slate-600 font-medium">অভিজ্ঞ শিক্ষক</p>
+            </div>
+            <div class="text-center p-6 rounded-2xl bg-indigo-50/50">
+                <p class="text-3xl font-bold text-indigo-600">১০০%</p>
+                <p class="text-slate-600 font-medium">সিকিউর এক্সেস</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book/Product Index Section -->
+    <section id="books" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl mb-4">জনপ্রিয় বই ও ডিজিটাল কোর্সসমূহ</h2>
+                    <p class="text-slate-600 text-lg">আমাদের কালেকশন থেকে আপনার প্রয়োজনীয় বইটি বেছে নিন এবং বারকোড ভেরিফিকেশনের মাধ্যমে পড়াশোনা শুরু করুন।</p>
+                </div>
+                <div class="mt-6 md:mt-0">
+                    <a href="#" class="text-blue-600 font-bold flex items-center hover:underline">
+                        সবগুলো দেখুন <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden hover-lift border border-slate-200">
+                    <div class="relative aspect-[3/4] bg-slate-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Book 1" class="object-cover w-full h-full">
+                        <div class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">Printed + PDF</div>
+                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur p-2 rounded-full shadow-sm">
+                            <i class="fas fa-heart text-slate-400 hover:text-red-500 cursor-pointer transition"></i>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center text-xs text-blue-600 font-semibold mb-2 uppercase tracking-wider">Physics & Science</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 line-clamp-1">আধুনিক পদার্থবিজ্ঞান রহস্য</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-slate-400 text-xs ml-2">(১২৪ রিভিউ)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xl font-bold text-blue-600">৳৪৫০</span>
+                                <span class="text-slate-400 text-sm line-through ml-2">৳৫৫০</span>
+                            </div>
+                            <button class="w-10 h-10 bg-slate-100 text-blue-600 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden hover-lift border border-slate-200">
+                    <div class="relative aspect-[3/4] bg-slate-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Book 2" class="object-cover w-full h-full">
+                        <div class="absolute top-3 left-3 bg-green-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">Digital Only</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center text-xs text-blue-600 font-semibold mb-2 uppercase tracking-wider">Mathematics</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 line-clamp-1">উচ্চতর গণিত শর্টকাট গাইড</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-slate-400 text-xs ml-2">(৮৯ রিভিউ)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xl font-bold text-blue-600">৳২০০</span>
+                            </div>
+                            <button class="w-10 h-10 bg-slate-100 text-blue-600 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden hover-lift border border-slate-200">
+                    <div class="relative aspect-[3/4] bg-slate-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1543004471-2406836ea88b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Book 3" class="object-cover w-full h-full">
+                        <div class="absolute top-3 left-3 bg-orange-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">Best Seller</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center text-xs text-blue-600 font-semibold mb-2 uppercase tracking-wider">English Grammar</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 line-clamp-1">কমিউনিকেটিভ ইংলিশ মাস্টারক্লাস</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-slate-400 text-xs ml-2">(২১০ রিভিউ)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xl font-bold text-blue-600">৳৩৫০</span>
+                                <span class="text-slate-400 text-sm line-through ml-2">৳৪৫০</span>
+                            </div>
+                            <button class="w-10 h-10 bg-slate-100 text-blue-600 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 (Course/Video Content) -->
+                <div class="bg-white rounded-2xl overflow-hidden hover-lift border border-slate-200">
+                    <div class="relative aspect-[3/4] bg-slate-100 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Course 1" class="object-cover w-full h-full">
+                        <div class="absolute inset-0 bg-blue-900/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-blue-600 shadow-xl">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">Video Course</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center text-xs text-blue-600 font-semibold mb-2 uppercase tracking-wider">General Knowledge</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 line-clamp-1">বিসিএস সাধারণ জ্ঞান পূর্ণাঙ্গ কোর্স</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-slate-400 text-xs ml-2">(৩৪০ রিভিউ)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xl font-bold text-blue-600">৳৯৯৯</span>
+                                <span class="text-slate-400 text-sm line-through ml-2">৳১৫০০</span>
+                            </div>
+                            <button class="px-3 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700 transition">এনরোল করুন</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl mb-4">আমাদের প্রধান বৈশিষ্ট্যসমূহ</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">আধুনিক ডিজিটাল লার্নিং এর সকল সুবিধা থাকছে এক জায়গায়।</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover-lift">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">বারকোড ভেরিফিকেশন</h3>
+                    <p class="text-slate-600">প্রতিটি প্রিন্টেড বইয়ের সাথে ইউনিক বারকোড। একাউন্ট ভেরিফাই ছাড়া এক্সেস অসম্ভব।</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover-lift">
+                    <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">স্মার্ট পিডিএফ রিডার</h3>
+                    <p class="text-slate-600">উন্নত ইন্টারফেস সহ ডিজিটাল বুক রিডার। যেখানে নোট এবং বুকমার্ক করার সুবিধা পাবেন।</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover-lift">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ভিডিও লার্নিং</h3>
+                    <p class="text-slate-600">হাই-কোয়ালিটি ভিডিও টিউটোরিয়াল এবং সিকিউর স্ট্রিমিং এর মাধ্যমে শেখার সুযোগ।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-blue-900 text-white">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">আপনি কি লেখক বা প্রতিষ্ঠান পরিচালক?</h2>
+            <p class="text-blue-100 mb-10 text-lg">আমাদের প্ল্যাটফর্ম ব্যবহার করে আপনার কন্টেন্ট বা বই ডিজিটালি বাজারজাত করুন নিরাপদে।</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button class="px-8 py-3 bg-white text-blue-900 font-bold rounded-lg hover:bg-blue-50 transition">টিচার হিসেবে যোগ দিন</button>
+                <button class="px-8 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition">ডেমো দেখুন</button>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="bg-blue-600 p-2 rounded-lg">
+                        <i class="fas fa-book-open text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-white">SmartEdu</span>
+                </div>
+                <p class="max-w-sm">আধুনিক শিক্ষা ও ডিজিটাল পাবলিশিং এর একটি পূর্ণাঙ্গ সমাধান। আমরা শিক্ষার প্রসারে প্রযুক্তির সঠিক ব্যবহার নিশ্চিত করি।</p>
+                <div class="flex space-x-4 mt-6">
+                    <a href="#" class="hover:text-blue-500 transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-red-500 transition"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6">গুরুত্বপূর্ণ লিঙ্ক</h4>
+                <ul class="space-y-4">
+                    <li><a href="#" class="hover:text-white transition">প্রাইভেসি পলিসি</a></li>
+                    <li><a href="#" class="hover:text-white transition">শর্তাবলী</a></li>
+                    <li><a href="#" class="hover:text-white transition">যোগাযোগ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6">যোগাযোগ</h4>
+                <p>সমাধান আইটি এন্ড কনসালটেন্সি</p>
+                <p class="mt-2">ইমেইল: info@somadhanit.com</p>
+                <p class="mt-2">ফোন: +৮৮০ ১২৩৪ ৫৬৭৮৯০</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-slate-800 text-center">
+            <p>&copy; ২০২৪ Smart Education & Digital Book Platform. সর্বস্বত্ব সংরক্ষিত।</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="toggleModal('login-modal')"></div>
+        <div class="relative bg-white w-full max-w-md rounded-2xl shadow-2xl p-8 animate__animated animate__zoomIn">
+            <button onclick="toggleModal('login-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">লগইন করুন</h2>
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">ইমেইল</label>
+                    <input type="text" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="example@email.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">পাসওয়ার্ড</label>
+                    <input type="password" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition" placeholder="••••••••">
+                </div>
+                <button type="button" class="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition">লগইন</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Toggle Login Modal
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('open')) {
+                menu.classList.remove('open');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                menu.classList.add('open');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        }
+
+        // Close on Escape
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.fixed.inset-0').forEach(m => m.classList.add('hidden'));
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>

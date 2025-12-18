@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>চেকআউট | Smart Education Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; }
+        .payment-radio:checked + label {
+            border-color: #2563eb;
+            background-color: #eff6ff;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .step-active { color: #2563eb; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen">
+
+    <!-- Simple Nav -->
+    <nav class="bg-white border-b h-16 flex items-center shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="bg-blue-600 p-1.5 rounded-lg">
+                    <i class="fas fa-book-open text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold text-blue-900">Smart<span class="text-blue-600">Edu</span></span>
+            </a>
+            <div class="text-sm font-semibold text-slate-500">
+                নিরাপদ চেকআউট <i class="fas fa-lock ml-1 text-green-500"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Left Side: Forms -->
+            <div class="flex-1 space-y-8">
+                
+                <!-- Section 1: Delivery Info -->
+                <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-100 flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">১</div>
+                        <h2 class="text-xl font-bold text-slate-900">ডেলিভারি ঠিকানা</h2>
+                    </div>
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-slate-700">আপনার নাম *</label>
+                            <input type="text" placeholder="পুরো নাম লিখুন" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-slate-700">মোবাইল নাম্বার *</label>
+                            <input type="tel" placeholder="০১৭XXXXXXXX" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        </div>
+                        <div class="md:col-span-2 space-y-2">
+                            <label class="text-sm font-semibold text-slate-700">ঠিকানা (বিস্তারিত) *</label>
+                            <textarea rows="3" placeholder="বাসা/ফ্ল্যাট নাম্বার, এলাকা এবং রোড নাম লিখুন" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-slate-700">শহর/জেলা *</label>
+                            <select class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                <option>ঢাকা</option>
+                                <option>চট্টগ্রাম</option>
+                                <option>রাজশাহী</option>
+                                <option>সিলেট</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-slate-700">অর্ডার নোট (ঐচ্ছিক)</label>
+                            <input type="text" placeholder="ডেলিভারিম্যানের জন্য কোনো নির্দেশনা থাকলে লিখুন" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Payment Methods -->
+                <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-100 flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">২</div>
+                        <h2 class="text-xl font-bold text-slate-900">পেমেন্ট মেথড</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <!-- bKash -->
+                            <div>
+                                <input type="radio" name="payment" id="bkash" class="hidden payment-radio" checked>
+                                <label for="bkash" class="flex flex-col items-center justify-center p-4 border-2 border-slate-100 rounded-2xl cursor-pointer hover:bg-slate-50 transition-all">
+                                    <img src="https://searchlogovector.com/wp-content/uploads/2019/02/bkash-logo-vector-400x400.png" class="w-12 h-12 object-contain mb-2" alt="bKash">
+                                    <span class="text-sm font-bold text-slate-700">বিকাশ</span>
+                                </label>
+                            </div>
+                            <!-- Nagad -->
+                            <div>
+                                <input type="radio" name="payment" id="nagad" class="hidden payment-radio">
+                                <label for="nagad" class="flex flex-col items-center justify-center p-4 border-2 border-slate-100 rounded-2xl cursor-pointer hover:bg-slate-50 transition-all">
+                                    <img src="https://download.logo.wine/logo/Nagad/Nagad-Logo.wine.png" class="w-12 h-12 object-contain mb-2" alt="Nagad">
+                                    <span class="text-sm font-bold text-slate-700">নগদ</span>
+                                </label>
+                            </div>
+                            <!-- Bank -->
+                            <div>
+                                <input type="radio" name="payment" id="bank" class="hidden payment-radio">
+                                <label for="bank" class="flex flex-col items-center justify-center p-4 border-2 border-slate-100 rounded-2xl cursor-pointer hover:bg-slate-50 transition-all">
+                                    <div class="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center mb-2">
+                                        <i class="fas fa-university text-slate-600 text-xl"></i>
+                                    </div>
+                                    <span class="text-sm font-bold text-slate-700">ব্যাংক কার্ড</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Payment Instructions -->
+                        <div id="bkash-info" class="mt-6 p-4 bg-pink-50 rounded-xl border border-pink-100">
+                            <p class="text-sm text-pink-700 leading-relaxed">
+                                <i class="fas fa-info-circle mr-2"></i> 
+                                বিকাশ পেমেন্ট সিলেক্ট করলে আপনি পরের ধাপে একটি পপআপ পাবেন যেখানে আপনার বিকাশ নাম্বার ও ওটিপি দিয়ে পেমেন্ট সম্পন্ন করতে হবে।
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Side: Order Summary -->
+            <div class="w-full lg:w-96">
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sticky top-24">
+                    <h3 class="text-lg font-bold text-slate-900 mb-6 border-b pb-4">অর্ডার সামারি</h3>
+                    
+                    <!-- Item List -->
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-12 h-12 bg-slate-100 rounded-lg overflow-hidden shrink-0">
+                                <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=100&q=80" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-sm font-bold text-slate-800 line-clamp-1">আধুনিক পদার্থবিজ্ঞান রহস্য</h4>
+                                <p class="text-xs text-slate-500">Qty: 1</p>
+                            </div>
+                            <span class="text-sm font-bold text-slate-900">৳৪৫০</span>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="flex space-x-2 mb-6">
+                        <input type="text" placeholder="কুপন কোড" class="flex-1 px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:ring-1 focus:ring-blue-500">
+                        <button class="px-4 py-2 bg-slate-900 text-white text-sm font-bold rounded-lg hover:bg-slate-800 transition">প্রয়োগ</button>
+                    </div>
+
+                    <!-- Price Breakup -->
+                    <div class="space-y-3 border-t pt-6 mb-6">
+                        <div class="flex justify-between text-slate-600">
+                            <span>সাব-টোটাল</span>
+                            <span>৳৪৫০</span>
+                        </div>
+                        <div class="flex justify-between text-slate-600">
+                            <span>ডেলিভারি চার্জ</span>
+                            <span>৳৫০</span>
+                        </div>
+                        <div class="flex justify-between text-slate-600">
+                            <span>ডিসকাউন্ট (১৮%)</span>
+                            <span class="text-green-600">-৳১০০</span>
+                        </div>
+                        <div class="flex justify-between text-xl font-black text-slate-900 pt-2 border-t">
+                            <span>মোট</span>
+                            <span class="text-blue-600">৳৪০০</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 shadow-lg shadow-blue-100 transition flex items-center justify-center space-x-2">
+                        <span>অর্ডার সম্পন্ন করুন</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    
+                    <p class="text-[11px] text-slate-400 text-center mt-4 italic leading-tight">
+                        অর্ডার সম্পন্ন করার মাধ্যমে আপনি আমাদের <a href="#" class="underline">টার্মস এন্ড কন্ডিশন</a> মেনে নিচ্ছেন।
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="bg-white border-t py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:row items-center justify-between gap-4">
+            <div class="flex space-x-6">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/SSLCommerz_Logo.png/1200px-SSLCommerz_Logo.png" class="h-6 grayscale opacity-50 hover:grayscale-0 transition cursor-help" alt="Security Partner">
+            </div>
+            <p class="text-xs text-slate-400 italic">আপনার ডাটা সম্পূর্ণ সুরক্ষিত এবং ইনক্রিপ্টেড।</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle payment info messages based on selection
+        const paymentRadios = document.querySelectorAll('input[name="payment"]');
+        const paymentInfo = document.getElementById('bkash-info');
+
+        paymentRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if(radio.id === 'bkash') {
+                    paymentInfo.innerHTML = `
+                        <p class="text-sm text-pink-700 leading-relaxed scale-in">
+                            <i class="fas fa-info-circle mr-2"></i> 
+                            বিকাশ পেমেন্ট সিলেক্ট করলে আপনি পরের ধাপে একটি পপআপ পাবেন যেখানে ওটিপি দিয়ে পেমেন্ট সম্পন্ন করতে হবে।
+                        </p>
+                    `;
+                    paymentInfo.className = "mt-6 p-4 bg-pink-50 rounded-xl border border-pink-100 animate-pulse";
+                    setTimeout(() => paymentInfo.classList.remove('animate-pulse'), 1000);
+                } else if(radio.id === 'nagad') {
+                    paymentInfo.innerHTML = `
+                        <p class="text-sm text-orange-700 leading-relaxed">
+                            <i class="fas fa-info-circle mr-2"></i> 
+                            নগদ এর মাধ্যমে পেমেন্ট করতে আপনাকে নগদ পেমেন্ট গেটওয়েতে রিডাইরেক্ট করা হবে।
+                        </p>
+                    `;
+                    paymentInfo.className = "mt-6 p-4 bg-orange-50 rounded-xl border border-orange-100";
+                } else {
+                    paymentInfo.innerHTML = `
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            <i class="fas fa-credit-card mr-2"></i> 
+                            ভিসা, মাস্টারকার্ড বা আমেরিকান এক্সপ্রেস কার্ড দিয়ে পেমেন্ট করুন। সকল ট্রানজ্যাকশন সুরক্ষিত।
+                        </p>
+                    `;
+                    paymentInfo.className = "mt-6 p-4 bg-slate-100 rounded-xl border border-slate-200";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>যোগাযোগ | Smart Education Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; }</style>
+</head>
+<body class="bg-slate-50 min-h-screen py-12">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-bold text-slate-900 mb-2">আপনার যেকোনো প্রয়োজনে আমরা আছি</h1>
+            <p class="text-slate-500">নিচের ফরমটি পূরণ করুন অথবা সরাসরি আমাদের অফিসে যোগাযোগ করুন।</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Contact Info -->
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start space-x-4">
+                    <div class="bg-blue-50 text-blue-600 p-3 rounded-lg"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h4 class="font-bold">অফিস ঠিকানা</h4>
+                        <p class="text-sm text-slate-500">মিরপুর ডিওএইচএস, ঢাকা ১২১৬, বাংলাদেশ।</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start space-x-4">
+                    <div class="bg-blue-50 text-blue-600 p-3 rounded-lg"><i class="fas fa-phone-alt"></i></div>
+                    <div>
+                        <h4 class="font-bold">সরাসরি কথা বলুন</h4>
+                        <p class="text-sm text-slate-500">+৮৮০ ১৭০০-০০০০০০</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start space-x-4">
+                    <div class="bg-blue-50 text-blue-600 p-3 rounded-lg"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <h4 class="font-bold">ইমেইল করুন</h4>
+                        <p class="text-sm text-slate-500">support@smartedu.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="lg:col-span-2 bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold">আপনার নাম</label>
+                        <input type="text" placeholder="পুরো নাম লিখুন" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-100 transition">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold">ইমেইল</label>
+                        <input type="email" placeholder="example@gmail.com" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-100 transition">
+                    </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-sm font-semibold">বিষয়</label>
+                        <input type="text" placeholder="কী বিষয়ে সাহায্য প্রয়োজন?" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-100 transition">
+                    </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-sm font-semibold">বিস্তারিত লিখুন</label>
+                        <textarea rows="4" placeholder="আপনার বার্তাটি এখানে লিখুন..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-100 transition"></textarea>
+                    </div>
+                    <button class="md:col-span-2 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-100">মেসেজ পাঠান</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রোডাক্ট ডিটেইলস | Smart Education Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; }
+        .tab-active { border-bottom: 3px solid #2563eb; color: #2563eb; }
+        .hover-lift { transition: transform 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Nav -->
+    <nav class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="bg-blue-600 p-1.5 rounded-lg">
+                    <i class="fas fa-book-open text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold text-blue-900">Smart<span class="text-blue-600">Edu</span></span>
+            </a>
+            <div class="hidden md:flex items-center bg-slate-100 px-4 py-2 rounded-xl w-1/3">
+                <i class="fas fa-search text-slate-400 mr-2"></i>
+                <input type="text" placeholder="বই খুঁজুন..." class="bg-transparent outline-none text-sm w-full">
+            </div>
+            <div class="flex items-center space-x-5">
+                <i class="fas fa-shopping-basket text-slate-600 cursor-pointer"></i>
+                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">JD</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Breadcrumb -->
+        <nav class="flex mb-8 text-sm text-slate-500">
+            <a href="index.html" class="hover:text-blue-600">হোম</a>
+            <span class="mx-2">/</span>
+            <a href="products.html" class="hover:text-blue-600">বইসমূহ</a>
+            <span class="mx-2">/</span>
+            <span class="text-slate-900 font-semibold">আধুনিক পদার্থবিজ্ঞান রহস্য</span>
+        </nav>
+
+        <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                <!-- Image Gallery -->
+                <div class="p-8 bg-slate-50/50 border-r border-slate-100">
+                    <div class="aspect-[4/5] rounded-2xl overflow-hidden mb-4 shadow-md">
+                        <img id="mainImage" src="https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=800&q=80" alt="Product" class="w-full h-full object-cover">
+                    </div>
+                    <div class="grid grid-cols-4 gap-4">
+                        <div class="cursor-pointer border-2 border-blue-600 rounded-lg overflow-hidden ring-2 ring-blue-100" onclick="updateImg(this.children[0].src, this)">
+                            <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=200&q=80" class="w-full h-20 object-cover">
+                        </div>
+                        <div class="cursor-pointer border-2 border-transparent hover:border-blue-300 rounded-lg overflow-hidden transition" onclick="updateImg(this.children[0].src, this)">
+                            <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=200&q=80" class="w-full h-20 object-cover">
+                        </div>
+                        <div class="cursor-pointer border-2 border-transparent hover:border-blue-300 rounded-lg overflow-hidden transition" onclick="updateImg(this.children[0].src, this)">
+                            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=200&q=80" class="w-full h-20 object-cover">
+                        </div>
+                        <div class="relative cursor-pointer rounded-lg overflow-hidden opacity-60">
+                            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=200&q=80" class="w-full h-20 object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/40 text-white font-bold">+২</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Details -->
+                <div class="p-8 md:p-12">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Printed + PDF</span>
+                        <span class="text-green-600 text-sm font-semibold flex items-center"><i class="fas fa-check-circle mr-1"></i> ইন স্টক</span>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">আধুনিক পদার্থবিজ্ঞান রহস্য: মহাবিশ্বের সন্ধানে</h1>
+                    
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-slate-600 font-bold">৪.৫</span>
+                        <span class="text-slate-400 text-sm border-l pl-4">১২৪ জন ইউজার রিভিউ দিয়েছেন</span>
+                    </div>
+
+                    <div class="flex items-baseline space-x-4 mb-8">
+                        <span class="text-4xl font-black text-blue-600">৳৪৫০</span>
+                        <span class="text-xl text-slate-400 line-through">৳৫৫০</span>
+                        <span class="bg-red-100 text-red-600 font-bold px-2 py-1 rounded text-sm">১৮% ছাড়</span>
+                    </div>
+
+                    <p class="text-slate-600 leading-relaxed mb-8 border-b pb-8">
+                        পদার্থবিজ্ঞানের জটিল সূত্রগুলোকে সহজ ভাষায় বোঝার জন্য এই বইটি একটি আদর্শ নির্দেশিকা। বিগ ব্যাং থেকে শুরু করে কোয়ান্টাম মেকানিক্স পর্যন্ত সবকিছুই এখানে চমৎকারভাবে ব্যাখ্যা করা হয়েছে। সাথে পাচ্ছেন স্মার্ট বারকোড এক্সেস।
+                    </p>
+
+                    <!-- Features -->
+                    <div class="grid grid-cols-2 gap-4 mb-8 text-sm">
+                        <div class="flex items-center text-slate-700">
+                            <i class="fas fa-truck text-blue-500 mr-3 w-5"></i> দ্রুত হোম ডেলিভারি
+                        </div>
+                        <div class="flex items-center text-slate-700">
+                            <i class="fas fa-undo text-blue-500 mr-3 w-5"></i> ৭ দিনের রিটার্ন পলিসি
+                        </div>
+                        <div class="flex items-center text-slate-700">
+                            <i class="fas fa-shield-alt text-blue-500 mr-3 w-5"></i> বারকোড ভেরিফিকেশন
+                        </div>
+                        <div class="flex items-center text-slate-700">
+                            <i class="fas fa-file-pdf text-blue-500 mr-3 w-5"></i> ফ্রি ডিজিটাল কপি (PDF)
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="flex-1 bg-blue-600 text-white font-bold py-4 rounded-2xl hover:bg-blue-700 shadow-lg shadow-blue-200 transition flex items-center justify-center">
+                            <i class="fas fa-shopping-cart mr-2"></i> কার্টে যোগ করুন
+                        </button>
+                        <button class="flex-1 bg-slate-900 text-white font-bold py-4 rounded-2xl hover:bg-slate-800 transition">
+                            এখনই কিনুন
+                        </button>
+                        <button class="px-5 py-4 border border-slate-200 rounded-2xl hover:bg-slate-50 transition">
+                            <i class="far fa-heart text-xl text-slate-400"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description and Reviews Tabs -->
+        <div class="mt-12 bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
+            <div class="flex border-b">
+                <button onclick="switchTab('desc')" id="tab-desc-btn" class="px-8 py-5 font-bold text-lg tab-active transition-all">বিস্তারিত বর্ণনা</button>
+                <button onclick="switchTab('review')" id="tab-review-btn" class="px-8 py-5 font-bold text-lg text-slate-500 hover:text-blue-600 transition-all">রিভিউ (১২৪)</button>
+            </div>
+            
+            <div id="tab-desc" class="p-8 md:p-12 animate__animated animate__fadeIn">
+                <article class="prose max-w-none text-slate-600 leading-loose">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">বইটির বিশেষত্ব:</h3>
+                    <ul class="list-disc pl-5 space-y-2 mb-6">
+                        <li>সহজ ও প্রাঞ্জল ভাষায় আধুনিক পদার্থবিজ্ঞানের জটিল বিষয়ের ব্যাখ্যা।</li>
+                        <li>রঙিন চিত্র ও ডায়াগ্রামের মাধ্যমে তাত্ত্বিক ধারণা স্পষ্টিকরণ।</li>
+                        <li>প্রতিটি অধ্যায়ের শেষে কুইজ এবং প্র্যাকটিস প্রবলেম।</li>
+                        <li>অনলাইন সাপোর্ট এবং ভিডিও রিসোর্স এক্সেস কোড।</li>
+                    </ul>
+                    <p>এই বইটি মূলত তাদের জন্য যারা মহাবিশ্বের রহস্য জানতে আগ্রহী কিন্তু গণিতের ভয়ে পিছিয়ে থাকেন। লেখক অত্যন্ত সুনিপুণভাবে তাত্ত্বিক পদার্থবিজ্ঞানকে সাধারণের বোধগম্য করে তুলে ধরেছেন।</p>
+                </article>
+            </div>
+
+            <div id="tab-review" class="hidden p-8 md:p-12 animate__animated animate__fadeIn">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <!-- Rating Summary -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-blue-50 p-8 rounded-2xl text-center">
+                            <h4 class="text-5xl font-black text-blue-600 mb-2">৪.৫</h4>
+                            <div class="flex justify-center text-yellow-400 mb-4">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="text-slate-500 text-sm font-medium">মোট ১২৪টি রিভিউ এর ভিত্তিতে</p>
+                        </div>
+                        <div class="mt-8 space-y-3">
+                            <div class="flex items-center">
+                                <span class="text-sm font-bold w-12">৫ স্টার</span>
+                                <div class="flex-1 h-2 bg-slate-100 rounded-full mx-4"><div class="h-2 bg-yellow-400 rounded-full w-[80%]"></div></div>
+                                <span class="text-sm text-slate-500 w-8">৮০%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-sm font-bold w-12">৪ স্টার</span>
+                                <div class="flex-1 h-2 bg-slate-100 rounded-full mx-4"><div class="h-2 bg-yellow-400 rounded-full w-[15%]"></div></div>
+                                <span class="text-sm text-slate-500 w-8">১৫%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-sm font-bold w-12">৩ স্টার</span>
+                                <div class="flex-1 h-2 bg-slate-100 rounded-full mx-4"><div class="h-2 bg-yellow-400 rounded-full w-[৩%]"></div></div>
+                                <span class="text-sm text-slate-500 w-8">৩%</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-8 py-4 border-2 border-blue-600 text-blue-600 font-bold rounded-2xl hover:bg-blue-600 hover:text-white transition">আপনার রিভিউ লিখুন</button>
+                    </div>
+
+                    <!-- User Reviews -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <!-- Review 1 -->
+                        <div class="border-b pb-8">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold mr-4">RA</div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-900">রাকিব আহমেদ</h5>
+                                        <p class="text-xs text-slate-400">২ দিন আগে</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-yellow-400 text-xs">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 text-sm italic">"অসাধারণ একটি বই! পদার্থবিজ্ঞান এত সহজ হতে পারে তা এই বইটি না পড়লে বুঝতাম না। বিশেষ করে ডায়াগ্রামগুলো খুব হেল্পফুল।"</p>
+                        </div>
+                        <!-- Review 2 -->
+                        <div class="border-b pb-8">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold mr-4">SF</div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-900">সাদিয়া ফারজানা</h5>
+                                        <p class="text-xs text-slate-400">১ সপ্তাহ আগে</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-yellow-400 text-xs">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star text-slate-300"></i>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 text-sm italic">"প্যাকেজিং খুব ভালো ছিল। বারকোড স্ক্যান করার পর ভিডিও লেকচারগুলো দেখতে সুবিধা হয়েছে।"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Products -->
+        <div class="mt-20">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center">
+                <span class="w-2 h-8 bg-blue-600 rounded-full mr-3"></span>
+                আরও কিছু চমৎকার বই
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Rec Card 1 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover-lift group">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="font-bold text-slate-900 mb-2 truncate">কোয়ান্টাম মেকানিক্স পরিচিতি</h3>
+                        <p class="text-blue-600 font-bold mb-4">৳৬৫০</p>
+                        <button class="w-full py-2 bg-slate-50 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition">বিস্তারিত দেখুন</button>
+                    </div>
+                </div>
+                <!-- Rec Card 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover-lift group">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="font-bold text-slate-900 mb-2 truncate">উচ্চতর গণিত শর্টকাট</h3>
+                        <p class="text-blue-600 font-bold mb-4">৳২০০</p>
+                        <button class="w-full py-2 bg-slate-50 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition">বিস্তারিত দেখুন</button>
+                    </div>
+                </div>
+                <!-- Rec Card 3 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover-lift group">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="font-bold text-slate-900 mb-2 truncate">ইংরেজি ভোকাবুলারি হ্যাকস</h3>
+                        <p class="text-blue-600 font-bold mb-4">৳২৮০</p>
+                        <button class="w-full py-2 bg-slate-50 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition">বিস্তারিত দেখুন</button>
+                    </div>
+                </div>
+                <!-- Rec Card 4 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover-lift group">
+                    <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="font-bold text-slate-900 mb-2 truncate">বিগ ব্যাং থেকে বর্তমান</h3>
+                        <p class="text-blue-600 font-bold mb-4">৳৭৫০</p>
+                        <button class="w-full py-2 bg-slate-50 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition">বিস্তারিত দেখুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; ২০২৪ Smart Education Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function updateImg(src, el) {
+            document.getElementById('mainImage').src = src;
+            // Remove active style from all thumbs
+            el.parentElement.querySelectorAll('div').forEach(div => {
+                div.classList.remove('border-blue-600', 'ring-2', 'ring-blue-100');
+                div.classList.add('border-transparent');
+            });
+            // Add active style
+            el.classList.add('border-blue-600', 'ring-2', 'ring-blue-100');
+            el.classList.remove('border-transparent');
+        }
+
+        function switchTab(tab) {
+            const descTab = document.getElementById('tab-desc');
+            const reviewTab = document.getElementById('tab-review');
+            const descBtn = document.getElementById('tab-desc-btn');
+            const reviewBtn = document.getElementById('tab-review-btn');
+
+            if (tab === 'desc') {
+                descTab.classList.remove('hidden');
+                reviewTab.classList.add('hidden');
+                descBtn.classList.add('tab-active');
+                descBtn.classList.remove('text-slate-500');
+                reviewBtn.classList.remove('tab-active');
+                reviewBtn.classList.add('text-slate-500');
+            } else {
+                descTab.classList.add('hidden');
+                reviewTab.classList.remove('hidden');
+                reviewBtn.classList.add('tab-active');
+                reviewBtn.classList.remove('text-slate-500');
+                descBtn.classList.remove('tab-active');
+                descBtn.classList.add('text-slate-500');
+            }
+        }
+    </script>
+</body>
+</html>
