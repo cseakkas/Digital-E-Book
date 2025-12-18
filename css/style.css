@@ -1,0 +1,49 @@
+body {
+    font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+    scroll-behavior: smooth;
+}
+.gradient-bg {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+}
+.glass-nav {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+}
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+/* Mobile Menu Transition */
+#mobile-menu {
+    transition: all 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+}
+#mobile-menu.open {
+    max-height: 500px;
+    padding-bottom: 1rem;
+}
+
+.filter-sidebar { height: fit-content; }
+input[type="range"] { accent-color: #2563eb; }
+.product-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.product-card:hover { transform: translateY(-8px); shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+
+.tab-active { border-bottom: 3px solid #2563eb; color: #2563eb; }
+.hover-lift { transition: transform 0.3s ease; }
+.hover-lift:hover { transform: translateY(-5px); }
+
+.course-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.15);
+}
+.instructor-img {
+    border: 2px solid white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}

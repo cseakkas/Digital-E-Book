@@ -262,7 +262,6 @@
             data.forEach(product => {
                 const card = `
                     <div class="product-card bg-white rounded-2xl border border-slate-200 overflow-hidden group shadow-sm">
-                        <a href='product_details.html'>
                         <div class="relative aspect-video overflow-hidden">
                             <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                             <div class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase">${product.tag}</div>
@@ -284,7 +283,6 @@
                                 </button>
                             </div>
                         </div>
-                        </a>
                     </div>
                 `;
                 productGrid.innerHTML += card;
